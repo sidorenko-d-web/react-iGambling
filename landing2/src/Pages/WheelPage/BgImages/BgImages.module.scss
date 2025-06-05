@@ -1,0 +1,55 @@
+@use '../../../assets/styles/index.scss' as *;
+@use './animations.scss';
+
+.wrapper {
+  .sport {
+    position: absolute;
+    z-index: -1;
+    bottom: 25px;
+    left: 50%;
+    width: 29.6vw;
+    transform: translateX(51%);
+    @include respond-to('sm') {
+      width: clamp(200px, 70vw, 430px);
+      transform: translateX(-5%);
+    }
+  }
+  .gifts {
+    position: absolute;
+    z-index: -1;
+    bottom: -18px;
+    left: 50%;
+    width: 37.8vw;
+    transform: translateX(-131%);
+    @include respond-to('sm') {
+      width: clamp(200px, 90vw, 500px);
+      transform: translateX(-85%);
+      bottom: 40px;
+    }
+  }
+  .dollars {
+    position: absolute;
+    z-index: -1;
+    top: 109px;
+    left: 50%;
+    width: 23vw;
+    transform: translateX(-166%);
+    @include respond-to('sm') {
+      width: clamp(100px, 40vw, 250px);
+      top: 170px;
+      transform: translateX(-135%);
+    }
+  }
+  .chips {
+    position: absolute;
+    z-index: -1;
+    top: 130px;
+    width: 29vw;
+    left: 50%;
+    transform: translateX(63%);
+    @include respond-to('sm') {
+      width: clamp(100px, 75vw, 460px);
+      transform: translateX(10%);
+    }
+  }
+}

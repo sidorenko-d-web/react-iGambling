@@ -1,0 +1,48 @@
+@use 'sass:map';
+
+@mixin respond-to($device) {
+  $breakpoints: (
+    'xs': '(max-width: 639px)',
+    'sm': '(max-width: 1023px)',
+    'md': '(max-width: 1279px)',
+    'lg': '(max-width: 1439px)',
+    'xl': '(max-width: 1440px)',
+    '2xl': '(min-width: 1620px)',
+  );
+
+  @if map.has-key($breakpoints, $device) {
+    $conditions: map.get($breakpoints, $device);
+
+    @media screen and ($conditions) {
+      @content;
+    }
+  } @else if $device== 'custom' and $additionalProperty {
+    @media screen and ($additionalProperty) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown device: #{$device}. Available: #{map-keys($breakpoints)}";
+  }
+}
+
+@mixin hover-active {
+  
+  transition: 0.3s scale, 0.3s filter;
+  
+  &:hover {
+    filter: brightness(1.3);
+    scale: 1.05;
+
+    @include respond-to('sm'){
+      scale: 1;
+      filter: none;
+    }
+  }
+
+  &:active {
+    filter: brightness(0.6);
+    scale: 0.97;
+  }
+
+
+}

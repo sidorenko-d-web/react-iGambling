@@ -1,0 +1,96 @@
+@use '../../../assets/styles/index.scss' as *;
+@use 'sass:color';
+
+.wrapper {
+  border: 5px solid $color-green;
+  background-color: color.scale($color-black, $alpha: -20%);
+  border-radius: 21px;
+  padding: 16px 50px;
+  position: absolute;
+  bottom: 87px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 59px;
+  box-shadow: 0 0 30px 0px $color-green;
+  animation: popupInAnim 1.5s ease forwards;
+
+  @include respond-to('sm') {
+    flex-direction: column;
+    padding: 29px 25px 20px;
+    width: 80svw;
+    bottom: unset;
+    top: 50svh;
+    gap: 12px;
+    border-width: 3px;
+  }
+
+  .textWrapper {
+    .headline {
+      font-size: 48px;
+      color: $color-white;
+      font-family: 'Cera pro';
+      font-weight: 500;
+
+      @include respond-to('md') {
+        font-size: 32px;
+      }
+
+      @include respond-to('md') {
+        text-align: center;
+      }
+    }
+
+    .text {
+      color: $color-green;
+      font-size: 48px;
+      font-family: 'Cera pro';
+      font-weight: 800;
+      white-space: nowrap;
+      margin-top: 10px;
+
+      @include respond-to('md') {
+        font-size: 32px;
+      }
+
+      @include respond-to('md') {
+        text-align: center;
+        white-space: normal;
+      }
+    }
+  }
+
+  .button {
+    background-color: $color-green;
+    color: $color-black;
+    font-size: 32px;
+    font-weight: 800;
+    padding: 10px 30px;
+    border-radius: 5px;
+    white-space: nowrap;
+    cursor: pointer;
+
+    @include hover-active;
+    @include respond-to('md') {
+      font-size: 28px;
+    }
+    @include respond-to('sm') {
+      font-size: 24px;
+      padding: 10px;
+      align-self: stretch;
+    }
+  }
+}
+
+@keyframes popupInAnim {
+  0% {
+    transform: translate(-50%, -40%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}

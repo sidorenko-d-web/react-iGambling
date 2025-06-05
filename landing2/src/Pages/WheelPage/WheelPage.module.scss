@@ -1,0 +1,226 @@
+@use '../../assets/styles/index.scss' as *;
+@use 'sass:color';
+
+$wheel-size: clamp(320px, 40.6vw, 671px);
+$inner-wheel-offset: 217px;
+$button-offset: 543px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  width: 100svw;
+  overflow: hidden;
+
+  .logo {
+    color: $color-white;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 82px;
+    position: relative;
+    z-index: 1000;
+    margin-bottom: 48px;
+
+    @include respond-to('sm') {
+      font-size: 56px;
+      margin-bottom: 0;
+    }
+  }
+
+  .spinWheelText {
+    color: $color-white;
+    font-family: 'Cera Pro';
+    font-weight: 900;
+    height: 194px;
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    padding: 0 200px 0 5.6vw;
+    font-size: 35px;
+    transform: translateY(22%);
+    position: absolute;
+    background: linear-gradient(to right, transparent, $color-purple 64%);
+    text-align: center;
+    white-space: wrap;
+    left: 0;
+
+    @include respond-to('xl') {
+      font-size: 28px;
+      padding-left: 70px;
+    }
+    @include respond-to('lg') {
+      padding-left: 40px;
+      font-size: 24px;
+    }
+    @include respond-to('sm') {
+      width: 300px;
+      height: fit-content;
+      background: none;
+      position: unset;
+      padding: 0;
+      margin: 20px 0 50px;
+      transform: translateY(0%);
+      font-size: 24px;
+    }
+  }
+
+  .spinsLeft {
+    color: $color-white;
+    font-family: 'Cera Pro';
+    font-weight: 900;
+    padding: 0 3.6vw 0 200px;
+    font-size: 41px;
+    display: flex;
+    align-items: center;
+    height: 194px;
+    position: absolute;
+    background: linear-gradient(to left, transparent, $color-purple 64%);
+    text-align: center;
+    right: 0;
+    transform: translateY(22%);
+
+    @include respond-to('xl') {
+      font-size: 36px;
+      padding-right: 40px;
+    }
+    @include respond-to('lg') {
+      font-size: 24px;
+    }
+    @include respond-to('sm') {
+      height: fit-content;
+      background: color.scale($color-purple, $alpha: -50%);
+      position: unset;
+      padding: 10px 30px;
+      transform: translate(50%, 0%);
+      font-size: 20px;
+      position: absolute;
+      bottom: 20px;
+      white-space: nowrap;
+      right: 50%;
+    }
+
+    .number {
+      color: $color-green-darker;
+      font-size: 54px;
+      transform: translate(15%, -5%);
+      margin-left: 5px;
+
+      @include respond-to('lg') {
+        font-size: 32px;
+      }
+      @include respond-to('sm') {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .wheelsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: $wheel-size;
+    width: $wheel-size;
+    margin-top: 4px;
+    z-index: 100;
+    transform: translateY(-27px);
+
+    .wheelPoint {
+      position: absolute;
+      z-index: 101;
+      top: -11px;
+      width: calc($wheel-size/10);
+      height: calc($wheel-size/10);
+
+      @include respond-to('sm') {
+        width: calc(clamp(320px, 80vw, 600px) / 7);
+        height: calc(clamp(320px, 80vw, 600px) /7);
+      }
+    }
+    @include respond-to('sm') {
+      width: clamp(320px, 80vw, 600px);
+      height: clamp(320px, 80vw, 600px);
+    }
+    .wheel {
+      position: absolute;
+      height: $wheel-size;
+      width: $wheel-size;
+      border-radius: 999px;
+      box-shadow: 0 0 20px 10px $color-purple;
+
+      @include respond-to('sm') {
+        width: clamp(320px, 80vw, 600px);
+        height: clamp(320px, 80vw, 600px);
+      }
+
+      &.spinAnim {
+        animation: upper-spin-wheel 10s forwards;
+        transform-origin: center center;
+      }
+    }
+
+    .spinButton {
+      position: absolute;
+      cursor: pointer;
+
+      &.pulseAnim {
+        animation: buttonPulse 3s infinite ease-in-out;
+      }
+
+      @include hover-active;
+
+      img {
+        height: calc($wheel-size/5);
+        width: calc($wheel-size/5);
+
+        @include respond-to('md') {
+          width: calc(clamp(320px, 80vw, 600px) / 5);
+          height: calc(clamp(320px, 80vw, 600px) / 5);
+        }
+      }
+    }
+  }
+
+  .vignnete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    height: 100svh;
+    box-shadow: inset 0 0 100px 30px $color-black;
+    animation: vignneteRevealAnim 1s forwards ease;
+    z-index: 1000;
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes vignneteRevealAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes upper-spin-wheel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(4135deg);
+    animation-timing-function: cubic-bezier(0.1, 0.8, 1.5, 1, 0.3, 0.2, 0.1);
+  }
+}
