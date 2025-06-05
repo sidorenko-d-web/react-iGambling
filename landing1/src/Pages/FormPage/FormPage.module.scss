@@ -1,0 +1,174 @@
+@use '../../assets/styles/index.scss' as *;
+@use 'sass:color';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+  width: 100svw;
+  gap: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./src/assets/images/form-bg.avif');
+  backdrop-filter: blur(2px);
+
+  @include respond-to('sm') {
+    background-image: url('./src/assets/images/form-bg-mobile.avif');
+  }
+
+  .logo {
+    color: $color-white;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 82px;
+    position: absolute;
+    top: 53px;
+    z-index: 1000;
+
+    @include respond-to('xs') {
+      font-size: 52px;
+      font-weight: 500;
+    }
+  }
+
+  .form {
+    border: 5px solid $color-pink;
+    border-radius: 15px;
+    width: clamp(300px, 80svw, 400px);
+    flex-direction: column;
+    display: flex;
+    padding: 36px 40px 72px;
+    background-color: color.scale($color-black, $alpha: -50%);
+
+    @include respond-to('xs') {
+      padding: 16px 20px;
+      transform: translateY(10%);
+      border-width: 3px;
+    }
+
+    .buttonsWrapper {
+      display: flex;
+      gap: 4px;
+      background-color: $color-dark-blue-bg;
+      padding: 4px;
+      border-radius: 5px;
+      border: 1px solid $color-pink-stroke;
+
+      button {
+        font-size: 14px;
+        font-family: 'Cera pro';
+        font-weight: 700;
+        flex: 1;
+        padding: 10px 0;
+        color: $color-white;
+        border-radius: 5px;
+
+        &.active {
+          background: $color-light-blue-bg;
+        }
+
+        @include hover-active;
+      }
+    }
+
+    .phoneInput {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+
+      select {
+        background-color: transparent;
+        color: transparent;
+        width: 15px;
+        height: 15px;
+        background-position: center center;
+        border: none;
+        background-image: url('../../assets/images/phone-select-icon.svg');
+        outline: none;
+
+        option {
+          color: $color-black;
+        }
+      }
+
+      input {
+        flex: 1;
+        @extend .input;
+      }
+
+      :global .PhoneInputCountry {
+        // width: 64px;
+        padding: 13px 7px 13px 15px;
+        background-color: $color-dark-blue-bg;
+        border: 1px solid $color-pink-stroke;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+
+        :global .PhoneInputCountryIcon {
+          width: 23px;
+          height: 17px;
+        }
+      }
+    }
+    .inputLabel {
+      color: $color-white;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Cera pro';
+      margin: 20px 0 5px;
+
+      @include respond-to('xs') {
+        margin: 12px 0 2px;
+      }
+    }
+
+    .input,
+    .inputWrapper {
+      border-radius: 5px;
+      background-color: $color-dark-blue-bg;
+      padding: 15px;
+      border: none;
+      color: $color-white;
+    }
+
+    .inputWrapper {
+      display: flex;
+
+      input {
+        background: none;
+        color: $color-white;
+        border: none;
+        flex: 1;
+      }
+
+      button {
+        @include hover-active;
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    .submitButton {
+      background-color: $color-purple;
+      width: 100%;
+      padding: 15px 0;
+      border-radius: 5px;
+      margin-top: 25px;
+      font-family: 'Cera pro';
+      font-weight: 700;
+      color: $color-white;
+      @include hover-active;
+      @include respond-to('xs') {
+        font-size: 16px;
+        padding: 12px 0;
+      }
+    }
+  }
+}

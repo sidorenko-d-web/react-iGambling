@@ -1,0 +1,238 @@
+@use '../../assets/styles/index.scss' as *;
+
+$wheel-size: 612px;
+$inner-wheel-offset: 217px;
+$button-offset: 480px;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100svh;
+  @include respond-to('sm') {
+    padding-top: 30px;
+  }
+  @include respond-to('xs') {
+    padding-top: 30px;
+  }
+
+  .logo {
+    color: $color-white;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 82px;
+    position: relative;
+    z-index: 1000;
+
+    @include respond-to('xs') {
+      font-size: 52px;
+      font-weight: 500;
+    }
+  }
+
+  .spinWheelText {
+    color: $color-white;
+    font-family: 'Cera Pro';
+    font-weight: 900;
+    font-size: 27px;
+    margin: 20px 0 20px;
+    position: relative;
+    z-index: 1000;
+
+    @include respond-to('lg') {
+      margin: 12px 0 16px;
+    }
+    @include respond-to('xs') {
+      font-size: 20px;
+      margin: 5px 0 10px;
+    }
+  }
+
+  .bonusesText {
+    color: $color-white;
+    font-family: 'Cera Pro';
+    font-weight: 900;
+    font-size: 27px;
+    background: $color-pink;
+    padding: 18px 36px;
+    transform: rotate(-2.8deg) translateX(4.5px);
+    position: relative;
+    z-index: 1000;
+
+    @include respond-to('lg') {
+      padding: 16px 28px;
+    }
+
+    @include respond-to('xs') {
+      font-size: 20px;
+      padding: 12px 28px;
+      z-index: 10;
+    }
+  }
+
+  .spinLightMobile {
+    width: 250px;
+    transform: translateX(30%);
+    display: none;
+    margin-top: 10px;
+    @include respond-to('sm') {
+      display: block;
+    }
+    @include respond-to('xs') {
+      width: 150px;
+    }
+  }
+
+  .wheelsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: $wheel-size;
+    width: $wheel-size;
+    margin-top: 4px;
+    z-index: 100;
+
+    @include respond-to('lg') {
+      margin-top: 15px;
+      height: $wheel-size - 50px;
+      width: $wheel-size - 50px;
+    }
+    @include respond-to('md') {
+      height: $wheel-size - 80px;
+      width: $wheel-size - 80px;
+      margin-top: -15px;
+    }
+    @include respond-to('xs') {
+      height: 97svw;
+      width: 97svw;
+      margin-top: -5px;
+    }
+    .upperWheel {
+      position: absolute;
+      height: $wheel-size;
+      width: $wheel-size;
+
+      &.spinAnim {
+        animation: upper-spin-wheel 10s forwards;
+        transform-origin: center center;
+      }
+
+      @include respond-to('lg') {
+        height: $wheel-size - 50px;
+        width: $wheel-size - 50px;
+      }
+
+      @include respond-to('md') {
+        height: $wheel-size - 80px;
+        width: $wheel-size - 80px;
+      }
+      @include respond-to('xs') {
+        height: 97svw;
+        width: 97svw;
+      }
+    }
+
+    .innerWheel {
+      position: absolute;
+      height: calc($wheel-size - $inner-wheel-offset);
+      width: calc($wheel-size - $inner-wheel-offset);
+
+      &.spinAnim {
+        animation: inner-spin-wheel 10s forwards;
+        transform-origin: center center;
+      }
+
+      @include respond-to('lg') {
+        height: $wheel-size - $inner-wheel-offset - 27px;
+        width: $wheel-size - $inner-wheel-offset - 27px;
+      }
+      @include respond-to('md') {
+        height: $wheel-size - $inner-wheel-offset - 47px;
+        width: $wheel-size - $inner-wheel-offset - 47px;
+      }
+      @include respond-to('xs') {
+        height: 63svw;
+        width: 63svw;
+      }
+    }
+
+    .spinButton {
+      transform: translateY(-10px);
+      position: absolute;
+      cursor: pointer;
+
+      &.pulseAnim {
+        animation: buttonPulse 3s infinite ease-in-out;
+      }
+
+      @include hover-active;
+
+      img {
+        height: calc($wheel-size - $button-offset);
+        width: calc($wheel-size - $button-offset);
+
+        @include respond-to('md') {
+          height: $wheel-size - $button-offset - 30px;
+          width: $wheel-size - $button-offset - 30px;
+        }
+        @include respond-to('xs') {
+          height: $wheel-size - $button-offset - 50px;
+          width: $wheel-size - $button-offset - 50px;
+        }
+      }
+    }
+  }
+
+  .vignnete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    height: 100svh;
+    box-shadow: inset 0 0 100px 30px $color-black;
+    animation: vignneteRevealAnim 1s forwards ease;
+    z-index: 1000;
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes vignneteRevealAnim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes upper-spin-wheel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(4335deg);
+    animation-timing-function: cubic-bezier(0.1, 0.8, 1.5, 1, 0.3, 0.2, 0.1);
+  }
+}
+
+@keyframes inner-spin-wheel {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-4400deg);
+    animation-timing-function: cubic-bezier(0.1, 0.8, 1.5, 1, 0.3, 0.2, 0.1);
+  }
+}

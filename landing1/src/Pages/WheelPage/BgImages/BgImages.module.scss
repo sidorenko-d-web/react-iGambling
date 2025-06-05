@@ -1,0 +1,128 @@
+@use '../../../assets/styles/index.scss' as *;
+@use './animations.scss';
+
+.wrapper {
+  .woman {
+    position: absolute;
+    bottom: -0px;
+    left: 50%;
+    width: 480px;
+    transform: translateX(-145%);
+
+    @include respond-to('md') {
+      transform: translateX(-130%);
+    }
+    @include respond-to('sm') {
+      transform: translateX(-110%);
+      width: 400px;
+      bottom: 100px;
+    }
+    @include respond-to('xs') {
+      transform: translate(-105%, 62%);
+      bottom: 50%;
+      width: 67vw;
+      z-index: 11;
+    }
+  }
+
+  .spinLight {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 292px;
+    transform: translate(106%, -55%);
+    z-index: 10;
+
+    @include respond-to('lg') {
+      transform: translate(120%, -50%);
+      width: 250px;
+    }
+    @include respond-to('sm') {
+      display: none;
+    }
+  }
+
+  .chip1,
+  .chip2,
+  .chip3 {
+    position: absolute;
+  }
+
+  .chip1 {
+    left: 265px;
+    top: 45px;
+    width: 320px;
+
+    animation: floatingChip1Anim 5s infinite ease-in-out;
+
+    @include respond-to('lg') {
+      left: 225px;
+    }
+    @include respond-to('md') {
+      left: -65px;
+      top: 25px;
+    }
+    @include respond-to('xs') {
+      left: -100px;
+      top: 50%;
+      transform: translateY(-150%);
+      width: 55svw;
+      animation-name: floatingChip1AnimMobile;
+    }
+  }
+
+  .chip2 {
+    left: -175px;
+    bottom: -120px;
+    width: 610px;
+    z-index: 15;
+
+    animation: floatingChip2Anim 5s 1s infinite ease-in-out;
+
+    @include respond-to('md') {
+      left: -240px;
+    }
+    @include respond-to('sm') {
+      left: -200px;
+      bottom: -220px;
+    }
+
+    @include respond-to('xs') {
+      width: 110svw;
+      bottom: 50%;
+      transform: translateY(128%);
+      left: -200px;
+      animation-name: floatingChip2AnimMobile;
+    }
+  }
+
+  .chip3 {
+    right: -345px;
+    bottom: -180px;
+    width: 830px;
+
+    animation: floatingChip3Anim 5s 0.5s infinite ease-in-out;
+
+    @include respond-to('lg') {
+      right: -360px;
+      bottom: -260px;
+    }
+    @include respond-to('md') {
+      right: -420px;
+      bottom: -300px;
+    }
+    @include respond-to('sm') {
+      right: -270px;
+      bottom: -120px;
+      width: 650px;
+    }
+    @include respond-to('xs') {
+      width: 80svw;
+      transform: translateY(100%);
+      bottom: 50%;
+      right: -140px;
+      animation-name: floatingChip3AnimMobile;
+    }
+  }
+}
+
