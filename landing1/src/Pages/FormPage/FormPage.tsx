@@ -48,7 +48,7 @@ export const FormPage = () => {
           <>
             <label className={styles.inputLabel}>Telefon</label>
             <PhoneInput
-              international={!!codeValue}
+              international
               className={styles.phoneInput}
               defaultCountry='RU'
               placeholder='Enter phone number'
